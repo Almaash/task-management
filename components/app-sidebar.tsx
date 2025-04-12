@@ -1,6 +1,14 @@
-"use client"
+"use client";
 
-import { LayoutDashboard, CheckSquare, Calendar, Settings, LogOut, PlusCircle, User } from "lucide-react"
+import {
+  LayoutDashboard,
+  CheckSquare,
+  Calendar,
+  Settings,
+  LogOut,
+  PlusCircle,
+  User,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -13,13 +21,20 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarGroupContent,
-} from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { CreateTaskDialog } from "@/components/create-task-dialog"
+} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { CreateTaskDialog } from "@/components/create-task-dialog";
+import Link from "next/link";
 
-export function AppSidebar() {
-  const [createTaskOpen, setCreateTaskOpen] = useState(false)
+interface AppHeaderProps {
+  activeView: "dashboard" | "board" | "calendar";
+  setActiveView: (view: "dashboard" | "board" | "calendar") => void;
+}
+
+export function AppSidebar({ activeView, setActiveView }: AppHeaderProps) {
+  const [createTaskOpen, setCreateTaskOpen] = useState(false);
+  
 
   return (
     <>
@@ -32,7 +47,10 @@ export function AppSidebar() {
             <span className="text-lg font-semibold">TaskFlow</span>
             <SidebarTrigger className="ml-auto" />
           </div>
-          <Button className="w-full justify-start gap-2" onClick={() => setCreateTaskOpen(true)}>
+          <Button
+            className="w-full justify-start gap-2"
+            onClick={() => setCreateTaskOpen(true)}
+          >
             <PlusCircle className="h-4 w-4" />
             Create Task
           </Button>
@@ -43,19 +61,42 @@ export function AppSidebar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
+                  <SidebarMenuButton
+                    onClick={() => setActiveView("dashboard")}
+                    className={
+                      activeView === "dashboard"
+                        ? "bg-gray-700 text-white"
+                        : "hover:bg-muted"
+                    }
+                  >
                     <LayoutDashboard className="h-4 w-4" />
                     <span>Dashboard</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
+
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
+                  <SidebarMenuButton
+                    onClick={() => setActiveView("board")}
+                    className={
+                      activeView === "board"
+                        ? "bg-gray-700 text-white"
+                        : "hover:bg-muted"
+                    }
+                  >
                     <CheckSquare className="h-4 w-4" />
                     <span>Tasks</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
+
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
+                  <SidebarMenuButton
+                    onClick={() => setActiveView("calendar")}
+                    className={
+                      activeView === "calendar"
+                        ? "bg-gray-700 text-white"
+                        : "hover:bg-muted"
+                    }
+                  >
                     <Calendar className="h-4 w-4" />
                     <span>Calendar</span>
                   </SidebarMenuButton>
@@ -68,22 +109,24 @@ export function AppSidebar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
-                    <div className="h-2 w-2 rounded-full bg-red-500" />
+                  <div className="flex justify-start items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-red-500 cursor-default" />
                     <span>Important</span>
-                  </SidebarMenuButton>
+                  </div>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
+                  <div className="flex justify-start items-center space-x-2 mt-1">
+                    {" "}
                     <div className="h-2 w-2 rounded-full bg-yellow-500" />
                     <span>Personal</span>
-                  </SidebarMenuButton>
+                  </div>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
+                  <div className="flex justify-start items-center space-x-2 mt-1">
+                    {" "}
                     <div className="h-2 w-2 rounded-full bg-green-500" />
                     <span>Work</span>
-                  </SidebarMenuButton>
+                  </div>
                 </SidebarMenuItem>
               </SidebarMenu>
             </SidebarGroupContent>
@@ -112,8 +155,10 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
-      <CreateTaskDialog open={createTaskOpen} onOpenChange={setCreateTaskOpen} />
+      <CreateTaskDialog
+        open={createTaskOpen}
+        onOpenChange={setCreateTaskOpen}
+      />
     </>
-  )
+  );
 }
-

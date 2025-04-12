@@ -7,11 +7,11 @@ import { Dashboard } from "@/components/dashboard"
 import { TaskBoard } from "@/components/task-board"
 
 export function DashboardShell() {
-  const [activeView, setActiveView] = useState<"dashboard" | "board">("dashboard")
+  const [activeView, setActiveView] = useState<"dashboard" | "board" | "calendar">("dashboard")
 
   return (
     <div className="flex h-screen w-full overflow-hidden">
-      <AppSidebar />
+      <AppSidebar activeView={activeView} setActiveView={setActiveView}/>
       <div className="flex flex-1 flex-col overflow-hidden">
         <AppHeader activeView={activeView} setActiveView={setActiveView} />
         <main className="flex-1 overflow-auto p-4 md:p-6">

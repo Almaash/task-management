@@ -9,8 +9,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useTaskStore } from "@/lib/task-store"
 
 interface AppHeaderProps {
-  activeView: "dashboard" | "board"
-  setActiveView: (view: "dashboard" | "board") => void
+  activeView: "dashboard" | "board" | "calendar"
+  setActiveView: (view: "dashboard" | "board" | "calendar") => void
 }
 
 export function AppHeader({ activeView, setActiveView }: AppHeaderProps) {
@@ -21,7 +21,7 @@ export function AppHeader({ activeView, setActiveView }: AppHeaderProps) {
     <header className="border-b bg-background">
       <div className="flex h-16 items-center px-4 md:px-6">
         <div className="flex gap-2">
-          <Button
+          {/* <Button
             variant={activeView === "dashboard" ? "default" : "outline"}
             size="sm"
             onClick={() => setActiveView("dashboard")}
@@ -34,7 +34,7 @@ export function AppHeader({ activeView, setActiveView }: AppHeaderProps) {
             onClick={() => setActiveView("board")}
           >
             Board
-          </Button>
+          </Button> */}
         </div>
         <div className="ml-auto flex items-center gap-4">
           <div className="relative w-full max-w-[300px]">

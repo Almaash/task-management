@@ -18,7 +18,7 @@ export function Dashboard() {
   const completionRate = totalTasks > 0 ? Math.round((completedTasks.length / totalTasks) * 100) : 0
 
   return (
-    <div className="grid  gap-4 md:grid-cols-2 lg:grid-cols-6">
+    <div className="grid  gap-4 grid-cols-7">
       <Card className="col-span-full">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-xl font-bold">Task Overview</CardTitle>
@@ -34,7 +34,7 @@ export function Dashboard() {
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">To Do</p>
-                <p className="text-2xl font-bold">{todoTasks.length}</p>
+                <p className="text-2xl font-bold">{todoTasks?.length}</p>
               </div>
             </div>
             <div className="flex items-center gap-2">

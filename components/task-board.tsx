@@ -43,7 +43,7 @@ export function TaskBoard() {
   return (
     <>
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid gap-4 grid-cols-4">
           <div className="flex flex-col gap-4">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between py-4">
@@ -54,12 +54,12 @@ export function TaskBoard() {
                 </Button>
               </CardHeader>
               <CardContent className="px-2 pb-2">
-                <Droppable droppableId="todo">
-                  {(provided) => (
+                <Droppable droppableId="complete" isDropDisabled={false} isCombineEnabled ignoreContainerClipping  >
+                  {(provided:any) => (
                     <div {...provided.droppableProps} ref={provided.innerRef} className="min-h-[200px] space-y-2 p-1">
                       {todoTasks.map((task, index) => (
                         <Draggable key={task.id} draggableId={task.id} index={index}>
-                          {(provided) => (
+                          {(provided:any) => (
                             <div
                               ref={provided.innerRef}
                               {...provided.draggableProps}
@@ -100,11 +100,11 @@ export function TaskBoard() {
               </CardHeader>
               <CardContent className="px-2 pb-2">
                 <Droppable droppableId="in-progress">
-                  {(provided) => (
+                  {(provided:any) => (
                     <div {...provided.droppableProps} ref={provided.innerRef} className="min-h-[200px] space-y-2 p-1">
                       {inProgressTasks.map((task, index) => (
                         <Draggable key={task.id} draggableId={task.id} index={index}>
-                          {(provided) => (
+                          {(provided:any) => (
                             <div
                               ref={provided.innerRef}
                               {...provided.draggableProps}
@@ -139,8 +139,8 @@ export function TaskBoard() {
                 </Button>
               </CardHeader>
               <CardContent className="px-2 pb-2">
-                <Droppable droppableId="completed">
-                  {(provided) => (
+                <Droppable droppableId="">
+                  {(provided:any) => (
                     <div {...provided.droppableProps} ref={provided.innerRef} className="min-h-[200px] space-y-2 p-1">
                       {completedTasks.map((task, index) => (
                         <Draggable key={task.id} draggableId={task.id} index={index}>
